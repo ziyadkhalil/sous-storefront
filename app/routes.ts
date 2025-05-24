@@ -5,4 +5,5 @@ export default [
     index("routes/home/index.tsx"),
     route("products/:category?", "routes/products/index.tsx"),
   ]),
+  route("/checkout", "routes/checkout/index.tsx"),
 ] satisfies RouteConfig;
