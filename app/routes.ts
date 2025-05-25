@@ -6,4 +6,5 @@ export default [
     route("products/:category?", "routes/products/index.tsx"),
   ]),
   route("/checkout", "routes/checkout/index.tsx"),
+  route("/success", "routes/success.tsx"),
 ] satisfies RouteConfig;
