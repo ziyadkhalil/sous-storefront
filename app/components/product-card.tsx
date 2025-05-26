@@ -1,12 +1,14 @@
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/types";
+import { cn } from "@/utils";
 
 type ProductCardProps = Product & {
   onAddToCart?: (product: Product) => void;
+  className?: string;
 };
 
-export const ProductCard = ({ id, images, title, price, onAddToCart }: ProductCardProps) => {
+export const ProductCard = ({ id, images, title, price, onAddToCart, className }: ProductCardProps) => {
   const handleAddToCart = () => {
     onAddToCart?.({ id, images, title, price });
     toast.success("Product added to cart");
@@ -14,7 +16,10 @@ export const ProductCard = ({ id, images, title, price, onAddToCart }: ProductCa
 
   return (
     <div
-      className="group bg-card flex-shrink-0 min-w-0 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 max-w-xs"
+      className={cn(
+        "group bg-card flex-shrink-0 min-w-0 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 max-w-xs",
+        className
+      )}
       data-testid="product-card"
     >
       <div className="relative aspect-square">
@@ -39,9 +44,14 @@ export const ProductCard = ({ id, images, title, price, onAddToCart }: ProductCa
   );
 };
 
-export const ProductCardSkeleton = () => {
+export const ProductCardSkeleton = ({ className }: { className?: string }) => {
   return (
-    <div className="bg-card flex-shrink-0 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 max-w-sm w-full">
+    <div
+      className={cn(
+        "bg-card flex-shrink-0 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-xs",
+        className
+      )}
+    >
       <div className="relative aspect-square">
         <div className="w-full h-full bg-muted animate-pulse" />
       </div>

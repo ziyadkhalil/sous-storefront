@@ -46,10 +46,12 @@ const Categories = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {productsInfiniteQuery.data?.pages.map((page) =>
-          page.products.map((product) => <ProductCard key={product.id} {...product} onAddToCart={addItemToCart} />)
+          page.products.map((product) => (
+            <ProductCard key={product.id} {...product} onAddToCart={addItemToCart} className="max-w-full" />
+          ))
         )}
         {productsInfiniteQuery.isFetchingNextPage &&
-          Array.from({ length: 4 }).map((_, index) => <ProductCardSkeleton key={index} />)}
+          Array.from({ length: 4 }).map((_, index) => <ProductCardSkeleton key={index} className="max-w-full" />)}
       </div>
       {productsInfiniteQuery.hasNextPage ? (
         <Button onClick={() => productsInfiniteQuery.fetchNextPage()}>Load more</Button>

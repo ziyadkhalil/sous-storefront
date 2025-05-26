@@ -9,7 +9,7 @@ export const categorySectionsInfiniteQueryOptions = ({ categories }: { categorie
     queryFn: async ({ pageParam = 0 }) => {
       const selectedCategories = categories?.slice(pageParam * 4, (pageParam + 1) * 4) || [];
       const [, ...categoryProducts] = await Promise.all([
-        new Promise((res) => setTimeout(res, 1000)),
+        new Promise((res) => setTimeout(res, 800)),
         ...selectedCategories.map(async (category) => {
           const response = await api
             .get<{
